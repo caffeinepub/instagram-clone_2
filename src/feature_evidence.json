@@ -1,0 +1,204 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-photo-and-video-feed-displaying-posts-from-users-the-current-user-follows-with-infinite-scroll-functionality",
+      "featureTitle": "Create a photo and video feed displaying posts from users the current user follows, with infinite scroll functionality",
+      "files": [
+        "frontend/src/components/PostCard.tsx",
+        "frontend/src/pages/FeedPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-user-profile-pages-with-profile-picture-bio-follower-following-counts-and-a-grid-view-of-the-user-s-posts",
+      "featureTitle": "Implement user profile pages with profile picture, bio, follower/following counts, and a grid view of the user's posts",
+      "files": [
+        "frontend/src/components/PostGrid.tsx",
+        "frontend/src/components/ProfileEditModal.tsx",
+        "frontend/src/pages/ProfilePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-photo-and-video-upload-functionality-with-caption-input-and-basic-image-filters",
+      "featureTitle": "Create photo and video upload functionality with caption input and basic image filters",
+      "files": [
+        "frontend/src/components/ImageFilterPreview.tsx",
+        "frontend/src/pages/UploadPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-like-comment-and-share-functionality-to-all-posts",
+      "featureTitle": "Add like, comment, and share functionality to all posts",
+      "files": [
+        "frontend/src/components/CommentSection.tsx",
+        "frontend/src/components/PostCard.tsx",
+        "frontend/src/components/PostInteractions.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-follow-and-unfollow-functionality-between-users",
+      "featureTitle": "Implement follow and unfollow functionality between users",
+      "files": [
+        "frontend/src/components/FollowButton.tsx",
+        "frontend/src/components/FollowListModal.tsx",
+        "frontend/src/pages/ProfilePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-stories-feature-where-users-can-post-temporary-content-that-expires-after-24-hours",
+      "featureTitle": "Create a Stories feature where users can post temporary content that expires after 24 hours",
+      "files": [
+        "frontend/src/components/StoriesBar.tsx",
+        "frontend/src/components/StoryUploadModal.tsx",
+        "frontend/src/pages/FeedPage.tsx",
+        "frontend/src/pages/StoryViewerPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-direct-messaging-system-allowing-users-to-send-text-messages-to-each-other",
+      "featureTitle": "Build a direct messaging system allowing users to send text messages to each other",
+      "files": [
+        "frontend/src/components/MessageBubble.tsx",
+        "frontend/src/pages/MessageThreadPage.tsx",
+        "frontend/src/pages/MessagesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-an-explore-page-for-discovering-new-content-and-users",
+      "featureTitle": "Create an Explore page for discovering new content and users",
+      "files": [
+        "frontend/src/components/PostDetailModal.tsx",
+        "frontend/src/components/PostGrid.tsx",
+        "frontend/src/pages/ExplorePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-a-cohesive-visual-theme-with-a-modern-photo-focused-aesthetic-using-clean-layouts-ample-whitespace-and-a-monochromatic-color-scheme-with-accent-colors-for-interactive-elements",
+      "featureTitle": "Design a cohesive visual theme with a modern, photo-focused aesthetic using clean layouts, ample whitespace, and a monochromatic color scheme with accent colors for interactive elements",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

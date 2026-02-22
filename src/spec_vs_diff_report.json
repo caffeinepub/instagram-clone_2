@@ -1,0 +1,89 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-22T04:13:51.485Z",
+  "summary": "The diff implements a comprehensive Instagram clone with all core social media features requested. However, several critical requirements are either partially implemented or missing entirely, particularly around Stories expiration logic, image filters, and real-time comment/like updates.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Feed supports infinite scrolling to load more posts",
+      "reason": "The FeedPage component is not included in the diff, so infinite scroll implementation cannot be verified. No evidence of pagination or infinite scroll logic in the provided backend or frontend code.",
+      "evidence": []
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Provide at least 3 basic image filters (e.g., brightness, contrast, saturation adjustments)",
+      "reason": "ImageFilterPreview component only provides 3 filters but uses CSS filter properties, not actual brightness/contrast/saturation adjustments that persist to uploaded images. The filters appear cosmetic only and do not modify the actual uploaded media data.",
+      "evidence": [
+        "frontend/src/components/ImageFilterPreview.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Like and comment counts update in real-time",
+      "reason": "The implementation uses standard React Query mutations with cache invalidation, not real-time updates. BuildRequest constraint explicitly states not to implement real-time WebSocket features, so real-time updates are impossible. This appears to be a specification contradiction.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/components/PostInteractions.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Stories automatically expire and are deleted after 24 hours",
+      "reason": "StoriesBar component filters stories client-side based on 24-hour timestamp, but there is no evidence of automatic deletion logic in the backend. The backend stores stories but does not implement expiration or deletion mechanisms.",
+      "evidence": [
+        "frontend/src/components/StoriesBar.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Unread message indicators show which conversations have new messages",
+      "reason": "No evidence of unread message tracking or indicators in MessageBubble, MessagesPage, or backend Message type. The Message type only has sender, receiver, content, and timestamp fields.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/MessageBubble.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.75,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/CommentSection.tsx",
+    "frontend/src/components/FollowButton.tsx",
+    "frontend/src/components/FollowListModal.tsx",
+    "frontend/src/components/ImageFilterPreview.tsx",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/components/MessageBubble.tsx",
+    "frontend/src/components/PostCard.tsx",
+    "frontend/src/components/PostDetailModal.tsx",
+    "frontend/src/components/PostGrid.tsx",
+    "frontend/src/components/PostInteractions.tsx",
+    "frontend/src/components/ProfileEditModal.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/StoriesBar.tsx",
+    "frontend/src/components/StoryUploadModal.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/ExplorePage.tsx",
+    "frontend/src/pages/FeedPage.tsx",
+    "frontend/src/pages/LoginPage.tsx",
+    "frontend/src/pages/MessageThreadPage.tsx",
+    "frontend/src/pages/MessagesPage.tsx",
+    "frontend/src/pages/ProfilePage.tsx",
+    "frontend/src/pages/StoryViewerPage.tsx",
+    "frontend/src/pages/UploadPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

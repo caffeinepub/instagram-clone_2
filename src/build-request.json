@@ -1,0 +1,206 @@
+{
+  "kind": "build_request",
+  "title": "Build Instagram clone with core social media features",
+  "projectName": "Social Gallery",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a photo and video feed displaying posts from users the current user follows, with infinite scroll functionality",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Feed displays posts in reverse chronological order",
+        "Each post shows the author's profile picture, username, timestamp, image/video content, caption, and interaction buttons",
+        "Feed supports infinite scrolling to load more posts",
+        "Only shows posts from users the current user follows"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement user profile pages with profile picture, bio, follower/following counts, and a grid view of the user's posts",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Profile page displays user's profile picture and bio text",
+        "Shows follower count and following count",
+        "Displays all user's posts in a responsive grid layout",
+        "Users can edit their own profile but only view others' profiles",
+        "Clicking on a post in the grid opens the full post view"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create photo and video upload functionality with caption input and basic image filters",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can select and upload images or videos from their device",
+        "Upload form includes text input for captions",
+        "Provide at least 3 basic image filters (e.g., brightness, contrast, saturation adjustments)",
+        "Preview shows the filtered image before posting",
+        "Uploaded media is stored and associated with the user's account"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add like, comment, and share functionality to all posts",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each post has a like button that toggles on/off and shows total like count",
+        "Each post has a comment section where users can write and view comments",
+        "Comments display author username and timestamp",
+        "Share button allows copying post link to clipboard",
+        "Like and comment counts update in real-time"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement follow and unfollow functionality between users",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Profile pages show a follow/unfollow button for other users",
+        "Following a user adds their posts to the current user's feed",
+        "Unfollowing removes their posts from the feed",
+        "Follower and following counts update immediately",
+        "Users can view lists of their followers and following"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create a Stories feature where users can post temporary content that expires after 24 hours",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Stories appear in a horizontal scrollable bar at the top of the feed",
+        "Users can upload images or short videos as stories",
+        "Stories automatically expire and are deleted after 24 hours",
+        "Viewing a story shows it in full-screen with swipe navigation",
+        "Profile pictures with story indicators show which users have active stories"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Build a direct messaging system allowing users to send text messages to each other",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can access a messages inbox showing all conversations",
+        "Each conversation displays message history with timestamps",
+        "Users can send text messages to any other user",
+        "Unread message indicators show which conversations have new messages",
+        "Messages are persisted and load on page refresh"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create an Explore page for discovering new content and users",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "I want to doblcete from instagram copy same app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Explore page displays a grid of popular or recent posts from all users",
+        "Posts are not limited to followed users",
+        "Grid layout is responsive and visually appealing",
+        "Clicking a post opens the full post view with interactions",
+        "Users can discover and follow new accounts from this page"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Design a cohesive visual theme with a modern, photo-focused aesthetic using clean layouts, ample whitespace, and a monochromatic color scheme with accent colors for interactive elements",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Consistent color palette applied across all pages",
+        "Typography hierarchy emphasizes content over chrome",
+        "Interactive elements use consistent hover and active states",
+        "Layout prioritizes large, high-quality images",
+        "Navigation is minimal and unobtrusive"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use Internet Identity for authentication, not third-party OAuth providers",
+    "Do not implement real-time WebSocket features for messages or notifications",
+    "Store all media as static assets in frontend/public/assets, not through backend"
+  ],
+  "nonGoals": [
+    "Video calling or voice messaging",
+    "Push notifications",
+    "Advanced video editing tools",
+    "Monetization or advertising features",
+    "Content moderation AI",
+    "Multiple photo uploads in a single carousel post",
+    "Reels or TikTok-style short video feed"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Default user profile placeholder avatar, circular format, neutral gray silhouette on light background (default-avatar.dim_200x200.png)",
+      "App logo for header navigation, clean and minimal wordmark design (app-logo.dim_150x50.png)",
+      "Empty state illustration for when user has no posts yet, friendly and minimal (empty-posts.dim_300x300.png)"
+    ],
+    "edits": []
+  }
+}

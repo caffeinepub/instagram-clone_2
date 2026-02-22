@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Instagram clone - a social media app replicating Instagram's core features",
+  "architectural_notes": [
+    "Social media platform requiring user authentication system",
+    "Image and video storage and streaming infrastructure needed",
+    "Real-time feed updates and notifications system",
+    "Scalable backend to handle multiple users and content"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Default user profile placeholder avatar, circular format, neutral gray silhouette on light background (default-avatar.dim_200x200.png)\n- App logo for header navigation, clean and minimal wordmark design (app-logo.dim_150x50.png)\n- Empty state illustration for when user has no posts yet, friendly and minimal (empty-posts.dim_300x300.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-photo-and-video-feed-displaying-posts-from-users-the-current-user-follows-with-infinite-scroll-functionality",
+      "title": "Create a photo and video feed displaying posts from users the current user follows, with infinite scroll functionality",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-user-profile-pages-with-profile-picture-bio-follower-following-counts-and-a-grid-view-of-the-user-s-posts",
+      "title": "Implement user profile pages with profile picture, bio, follower/following counts, and a grid view of the user's posts",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-photo-and-video-upload-functionality-with-caption-input-and-basic-image-filters",
+      "title": "Create photo and video upload functionality with caption input and basic image filters",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-like-comment-and-share-functionality-to-all-posts",
+      "title": "Add like, comment, and share functionality to all posts",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-follow-and-unfollow-functionality-between-users",
+      "title": "Implement follow and unfollow functionality between users",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-stories-feature-where-users-can-post-temporary-content-that-expires-after-24-hours",
+      "title": "Create a Stories feature where users can post temporary content that expires after 24 hours",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-direct-messaging-system-allowing-users-to-send-text-messages-to-each-other",
+      "title": "Build a direct messaging system allowing users to send text messages to each other",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-explore-page-for-discovering-new-content-and-users",
+      "title": "Create an Explore page for discovering new content and users",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-cohesive-visual-theme-with-a-modern-photo-focused-aesthetic-using-clean-layouts-ample-whitespace-and-a-monochromatic-color-scheme-with-accent-colors-for-interactive-elements",
+      "title": "Design a cohesive visual theme with a modern, photo-focused aesthetic using clean layouts, ample whitespace, and a monochromatic color scheme with accent colors for interactive elements",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Photo/video feed with posts from followed users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "User profiles with bio, profile picture, and post grid",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Photo/video upload with filters and editing",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Like, comment, and share functionality on posts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Follow/unfollow users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Stories feature with 24-hour expiration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Direct messaging between users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Explore page to discover new content",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Instagram Clone",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,308 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Instagram Clone Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create photo and video feed with infinite scroll showing posts from followed users",
+      "acceptanceCriteria": [
+        "Feed displays posts in reverse chronological order",
+        "Each post shows the author's profile picture, username, timestamp, image/video content, caption, and interaction buttons",
+        "Feed supports infinite scrolling to load more posts",
+        "Only shows posts from users the current user follows"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/FeedPage.tsx",
+          "operation": "create",
+          "description": "Create the main feed page that fetches and displays posts from followed users using getUserFeed backend method. Implement infinite scroll using IntersectionObserver API. Each post card displays author profile picture (using getDirectURL from ExternalBlob for post content), username from getUserProfile, timestamp, caption, like/comment counts, and interaction buttons. Wire this page into the main App router."
+        },
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "create",
+          "description": "Create reusable post card component that accepts a Post object and author Principal. Display the post content using ExternalBlob.getDirectURL() for streaming. Show author info fetched via getUserProfile. Include like button, comment button, and share button placeholders. Format timestamp using relative time display."
+        },
+        {
+          "path": "frontend/src/hooks/useUserFeed.ts",
+          "operation": "create",
+          "description": "Create custom hook that wraps getUserFeed backend call with React Query for caching and pagination support. Return posts array, loading state, and fetchNextPage function for infinite scroll. Use authorization component to ensure user is authenticated before fetching."
+        },
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create custom hook for fetching user profiles via getUserProfile backend method. Implement caching with React Query using Principal as query key. Handle null returns gracefully when profile doesn't exist."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement user profile pages with profile picture, bio, stats, and post grid",
+      "acceptanceCriteria": [
+        "Profile page displays user's profile picture and bio text",
+        "Shows follower count and following count",
+        "Displays all user's posts in a responsive grid layout",
+        "Users can edit their own profile but only view others' profiles",
+        "Clicking on a post in the grid opens the full post view"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProfilePage.tsx",
+          "operation": "create",
+          "description": "Create profile page component that accepts userId param from route. Fetch user profile via getUserProfile, follower/following counts via getFollowers and getFollowing, and posts via getUserPosts. Display profile picture from profilePicture bytes (convert to data URL or use generated default-avatar.dim_200x200.png from frontend/public/assets/generated/default-avatar.dim_200x200.png as fallback), bio, stats header, and post grid. Show edit button only for current user's profile. Register this route in App.tsx."
+        },
+        {
+          "path": "frontend/src/components/PostGrid.tsx",
+          "operation": "create",
+          "description": "Create responsive post grid component using CSS Grid or Tailwind grid classes. Display post thumbnails using ExternalBlob.getDirectURL(). Each grid item is clickable and opens post detail modal or navigates to post detail page."
+        },
+        {
+          "path": "frontend/src/components/ProfileEditModal.tsx",
+          "operation": "create",
+          "description": "Create modal for editing user profile with inputs for username, bio, and profile picture upload. Use saveCallerUserProfile to persist changes. Include image upload preview and validation. Show generated empty-posts.dim_300x300.png from frontend/public/assets/generated/empty-posts.dim_300x300.png when user has no posts."
+        },
+        {
+          "path": "frontend/src/hooks/useFollowStats.ts",
+          "operation": "create",
+          "description": "Create hook for fetching follower and following lists using getFollowers and getFollowing backend methods. Return counts and full lists with React Query caching."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Create photo and video upload with caption and basic filters",
+      "acceptanceCriteria": [
+        "Users can select and upload images or videos from their device",
+        "Upload form includes text input for captions",
+        "Provide at least 3 basic image filters (e.g., brightness, contrast, saturation adjustments)",
+        "Preview shows the filtered image before posting",
+        "Uploaded media is stored and associated with the user's account"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/UploadPage.tsx",
+          "operation": "create",
+          "description": "Create upload page with file input for image/video selection, caption textarea, and filter selector. Use blob-storage component to convert selected file to ExternalBlob via ExternalBlob.fromBytes and track upload progress with withUploadProgress. Apply CSS filters to preview (brightness, contrast, saturation). Call createPost backend method with filtered ExternalBlob and caption. Verify the blob-storage component's usage instructions before implementing. Register this route in App.tsx."
+        },
+        {
+          "path": "frontend/src/components/ImageFilterPreview.tsx",
+          "operation": "create",
+          "description": "Create component that displays image preview with selectable filters. Implement at least 3 filters using CSS filter properties: brightness adjustment, contrast adjustment, and saturation adjustment. Allow user to toggle between filters and see real-time preview. Export selected filter values for application to uploaded blob."
+        },
+        {
+          "path": "frontend/src/hooks/useCreatePost.ts",
+          "operation": "create",
+          "description": "Create mutation hook for createPost backend call. Accept ExternalBlob and caption, handle loading states and errors. Invalidate user feed and profile queries after successful post creation. Use authorization component to ensure user is authenticated."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add like, comment, and share functionality to posts",
+      "acceptanceCriteria": [
+        "Each post has a like button that toggles on/off and shows total like count",
+        "Each post has a comment section where users can write and view comments",
+        "Comments display author username and timestamp",
+        "Share button allows copying post link to clipboard",
+        "Like and comment counts update in real-time"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PostInteractions.tsx",
+          "operation": "create",
+          "description": "Create post interaction component with like button using likePost backend method, comment input using commentOnPost, and share button. Display current like count from Post.likes and comments from Post.comments array. Implement optimistic updates for like toggle. Share button copies post URL to clipboard using navigator.clipboard API."
+        },
+        {
+          "path": "frontend/src/components/CommentSection.tsx",
+          "operation": "create",
+          "description": "Create comment section component that displays existing comments from Post.comments array. Show comment author username via getUserProfile lookup, comment content, and timestamp. Include textarea and submit button for new comments that calls commentOnPost with author Principal and postId."
+        },
+        {
+          "path": "frontend/src/hooks/usePostInteractions.ts",
+          "operation": "create",
+          "description": "Create hook for post interactions wrapping likePost and commentOnPost backend methods. Implement optimistic updates for likes and comments. Invalidate relevant queries after mutations to reflect updated counts."
+        },
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "modify",
+          "description": "Integrate PostInteractions component into PostCard to show like/comment/share buttons and display interaction counts beneath post content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement follow and unfollow functionality between users",
+      "acceptanceCriteria": [
+        "Profile pages show a follow/unfollow button for other users",
+        "Following a user adds their posts to the current user's feed",
+        "Unfollowing removes their posts from the feed",
+        "Follower and following counts update immediately",
+        "Users can view lists of their followers and following"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FollowButton.tsx",
+          "operation": "create",
+          "description": "Create follow/unfollow toggle button component. Determine follow status by checking if target user is in current user's following list from getFollowing. Call followUser or unfollowUser backend methods. Show loading state during mutation. Update follower/following counts optimistically."
+        },
+        {
+          "path": "frontend/src/pages/ProfilePage.tsx",
+          "operation": "modify",
+          "description": "Integrate FollowButton component into ProfilePage for other users' profiles. Hide follow button on current user's own profile. Display follower and following counts that update immediately after follow/unfollow actions."
+        },
+        {
+          "path": "frontend/src/hooks/useFollowUser.ts",
+          "operation": "create",
+          "description": "Create mutation hooks for followUser and unfollowUser backend calls. Invalidate feed, follower lists, and following lists queries after successful mutations to ensure feed updates with new user's posts or removes unfollowed user's posts."
+        },
+        {
+          "path": "frontend/src/components/FollowListModal.tsx",
+          "operation": "create",
+          "description": "Create modal to display lists of followers or following users. Fetch lists using getFollowers or getFollowing backend methods. Display each user with profile picture, username from getUserProfile, and follow status. Allow clicking user to navigate to their profile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create Stories feature with 24-hour temporary content",
+      "acceptanceCriteria": [
+        "Stories appear in a horizontal scrollable bar at the top of the feed",
+        "Users can upload images or short videos as stories",
+        "Stories automatically expire and are deleted after 24 hours",
+        "Viewing a story shows it in full-screen with swipe navigation",
+        "Profile pictures with story indicators show which users have active stories"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/StoriesBar.tsx",
+          "operation": "create",
+          "description": "Create horizontal scrollable stories bar component displayed at top of feed. Fetch stories using getFollowedUsersStories backend method. Display user profile pictures with gradient ring indicator for active stories. Show current user's profile picture with plus icon for adding story. Filter stories to only show those within 24 hours of timestamp."
+        },
+        {
+          "path": "frontend/src/pages/StoryViewerPage.tsx",
+          "operation": "create",
+          "description": "Create full-screen story viewer page that displays story content using ExternalBlob.getDirectURL() for the Story.content field. Implement swipe navigation between stories using touch events or keyboard arrows. Show progress bar at top indicating story position. Auto-advance to next story after 5 seconds. Display story author username and profile picture. Register this route in App.tsx."
+        },
+        {
+          "path": "frontend/src/components/StoryUploadModal.tsx",
+          "operation": "create",
+          "description": "Create modal for uploading stories with image/video file input. Use blob-storage component to convert file to ExternalBlob via ExternalBlob.fromBytes. Call postStory backend method with the ExternalBlob. Verify the blob-storage component's usage instructions before implementing. Show upload progress using withUploadProgress method."
+        },
+        {
+          "path": "frontend/src/hooks/useStories.ts",
+          "operation": "create",
+          "description": "Create hook for fetching stories via getFollowedUsersStories. Filter stories client-side to only include those with timestamp within last 24 hours. Return stories grouped by user Principal with React Query caching."
+        },
+        {
+          "path": "frontend/src/pages/FeedPage.tsx",
+          "operation": "modify",
+          "description": "Add StoriesBar component at the top of the feed page, above the post feed. Stories bar should be horizontally scrollable and fixed or sticky positioned."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Build direct messaging system for text messages",
+      "acceptanceCriteria": [
+        "Users can access a messages inbox showing all conversations",
+        "Each conversation displays message history with timestamps",
+        "Users can send text messages to any other user",
+        "Unread message indicators show which conversations have new messages",
+        "Messages are persisted and load on page refresh"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MessagesPage.tsx",
+          "operation": "create",
+          "description": "Create messages inbox page showing list of conversations. Group messages by conversation partner using getMessages backend method. Display most recent message preview and timestamp for each conversation. Implement unread indicators by tracking last viewed timestamp client-side. Clicking conversation opens message thread view. Register this route in App.tsx."
+        },
+        {
+          "path": "frontend/src/pages/MessageThreadPage.tsx",
+          "operation": "create",
+          "description": "Create message thread page showing full conversation with a specific user. Fetch messages using getMessages backend method with the conversation partner's Principal. Display messages in chronological order with sender username from getUserProfile, content, and timestamp. Include message input and send button at bottom that calls sendMessage backend method. Register this route in App.tsx with userId parameter."
+        },
+        {
+          "path": "frontend/src/components/MessageBubble.tsx",
+          "operation": "create",
+          "description": "Create message bubble component that displays a single message. Style differently for sent vs received messages. Show message content and timestamp. Align sent messages to right and received to left."
+        },
+        {
+          "path": "frontend/src/hooks/useMessages.ts",
+          "operation": "create",
+          "description": "Create hooks for messaging including useConversations to fetch and group all messages by user, useMessageThread to fetch messages with specific user, and useSendMessage mutation for sendMessage backend call. Use React Query for caching and automatic refetching. Invalidate queries after sending new message."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create Explore page for discovering new content and users",
+      "acceptanceCriteria": [
+        "Explore page displays a grid of popular or recent posts from all users",
+        "Posts are not limited to followed users",
+        "Grid layout is responsive and visually appealing",
+        "Clicking a post opens the full post view with interactions",
+        "Users can discover and follow new accounts from this page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ExplorePage.tsx",
+          "operation": "create",
+          "description": "Create explore page that fetches posts using getExplorePosts backend method with a limit parameter. Display posts in responsive grid layout using PostGrid component. Posts are from all users, not just followed accounts. Clicking a post opens post detail view with full interactions. Register this route in App.tsx."
+        },
+        {
+          "path": "frontend/src/hooks/useExplorePosts.ts",
+          "operation": "create",
+          "description": "Create hook for fetching explore posts via getExplorePosts backend method. Support pagination by incrementing limit parameter. Use React Query for caching. Return posts array, loading state, and loadMore function."
+        },
+        {
+          "path": "frontend/src/components/PostDetailModal.tsx",
+          "operation": "create",
+          "description": "Create modal component for displaying full post detail view. Show post content using ExternalBlob.getDirectURL(), author info, caption, timestamp, and full PostInteractions component with like/comment/share. Include author profile link and follow button for discovery. Allow closing modal to return to previous page."
+        },
+        {
+          "path": "frontend/src/components/PostGrid.tsx",
+          "operation": "modify",
+          "description": "Update PostGrid to support opening PostDetailModal when a grid item is clicked. Pass post data and author Principal to modal. Ensure modal state is managed properly with URL state or local state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Design cohesive visual theme with modern photo-focused aesthetic",
+      "acceptanceCriteria": [
+        "Consistent color palette applied across all pages",
+        "Typography hierarchy emphasizes content over chrome",
+        "Interactive elements use consistent hover and active states",
+        "Layout prioritizes large, high-quality images",
+        "Navigation is minimal and unobtrusive"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define monochromatic color scheme with accent colors in CSS custom properties. Set primary palette to grayscale (blacks, whites, grays) with a single accent color (e.g., blue) for interactive elements. Define typography scale with font-family, font-size, and line-height variables. Add base styles for consistent spacing and transitions. Ensure large images are prioritized in layout with minimal chrome."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom color palette matching the monochromatic scheme and accent color. Configure typography plugin settings to emphasize content hierarchy. Add custom spacing scale optimized for photo-focused layouts with ample whitespace. Define consistent hover and active state variants for interactive elements."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create layout wrapper component with minimal, unobtrusive navigation header. Include app logo from frontend/public/assets/generated/app-logo.dim_150x50.png, navigation links (Feed, Explore, Messages, Profile), and authentication controls. Use sticky or fixed positioning for header with clean, minimal chrome. Apply consistent page layout structure with proper spacing and max-width constraints."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with Layout component to ensure consistent navigation and visual structure. Define routes for FeedPage, ProfilePage, ExplorePage, MessagesPage, MessageThreadPage, UploadPage, and StoryViewerPage using React Router. Use authorization component to protect authenticated routes and redirect guests to login. Set up profile setup flow using getCallerUserProfile to check if user has completed profile after login."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Create modal for first-time profile setup prompting user for username, bio, and profile picture. Use authorization component pattern to check getCallerUserProfile and show modal only when user is authenticated but profile is null. Call saveCallerUserProfile after user completes setup. Use generated default-avatar.dim_200x200.png from frontend/public/assets/generated/default-avatar.dim_200x200.png as default profile picture option."
+        }
+      ]
+    }
+  ]
+}
